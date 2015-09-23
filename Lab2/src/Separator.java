@@ -55,8 +55,17 @@ public class Separator {
 		}
 		
 		System.out.println("Abort mission");
-		System.out.println("Integers: "+Arrays.toString(intArray));
-		System.out.println("Floats: "+Arrays.toString(floatArray));
+		System.out.print("Integers: ");
+		for (int i : intArray)
+		{
+			System.out.print(i+" ");
+		}
+		System.out.println();
+		System.out.print("Floats: ");
+		for (float f : floatArray)
+		{
+			System.out.print(f+" ");
+		}
 		
 	}
 
