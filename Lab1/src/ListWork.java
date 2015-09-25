@@ -1,4 +1,3 @@
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 
@@ -31,14 +30,15 @@ public class ListWork
 		
 		System.out.println("Please input values (at least 10 integers) for this lab project!");
 		
-		Scanner scannerRead = new Scanner(new InputStreamReader(System.in));
+		Scanner scannerRead = new Scanner(System.in);
+		scannerRead.useDelimiter("\\s");
 		int index = 0;
 		while (index < 10)
 		{
-			while (!scannerRead.hasNext("\\s"));
+			while (!scannerRead.hasNext());
 			try
 			{
-				intArray[index] = Integer.parseInt(scannerRead.next("\\s"));
+				intArray[index] = Integer.parseInt(scannerRead.next());
 		    	index ++;
 			}
 			catch (NumberFormatException nfe)
@@ -52,20 +52,33 @@ public class ListWork
 		}
 		
 		System.out.println("Would you like to search through this array? (y/n)");
-		while (scannerRead.nextLine().equalsIgnoreCase("Y"))
+		while(true) //()
 		{
-			System.out.println("What would you like to search for?");
+			String input = scannerRead.next(); 
+			if (input.equalsIgnoreCase("N"))
+			{
+				break;
+			}
+			else if (input.equalsIgnoreCase("Y"))
+			{
+				System.out.println("What would you like to search for?");
 
-			try
-			{
-				boolean res = search(intArray, Integer.parseInt(scannerRead.next("\\s")));
-				System.out.println(res? "Found":"Not Found");
+				try
+				{
+					boolean res = search(intArray, Integer.parseInt(scannerRead.next()));
+					System.out.println(res? "Found":"Not Found");
+				}
+				catch (NumberFormatException nfe)
+				{
+					System.out.println("Not a valid entry");
+				}
+				System.out.println("Would you like to search through this array again? (y/n)");
+				scannerRead.nextLine();
 			}
-			catch (NumberFormatException nfe)
+			else
 			{
-				System.out.println("Not a valid entry");
+				System.out.println("Invalid input, please try \"y\" or \"n\".");
 			}
-			System.out.println("Would you like to search through this array again? (y/n)");
 		}
 		scannerRead.close();
 		print(intArray);
