@@ -46,10 +46,7 @@ public class ListWork
 				
 			}
 		}
-		//if (scannerRead.hasNextLine())
-		//{
 			scannerRead.nextLine();
-		//}
 		
 		System.out.println("Would you like to search through this array? (y/n)");
 		while(true) //()
