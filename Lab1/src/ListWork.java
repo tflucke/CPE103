@@ -31,7 +31,7 @@ public class ListWork
 		System.out.println("Please input values (at least 10 integers) for this lab project!");
 		
 		Scanner scannerRead = new Scanner(System.in);
-		scannerRead.useDelimiter("\\s");
+		scannerRead.useDelimiter("\\s+");
 		int index = 0;
 		while (index < 10)
 		{
@@ -46,10 +46,10 @@ public class ListWork
 				
 			}
 		}
-		if (scannerRead.hasNextLine())
-		{
+		//if (scannerRead.hasNextLine())
+		//{
 			scannerRead.nextLine();
-		}
+		//}
 		
 		System.out.println("Would you like to search through this array? (y/n)");
 		while(true) //()
