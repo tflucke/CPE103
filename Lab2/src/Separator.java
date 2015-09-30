@@ -1,8 +1,9 @@
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.Scanner;
 
 
 public class Separator {
+	
 
 	public static void main(String[] args) 
 	{
@@ -14,7 +15,7 @@ public class Separator {
 		System.out.println("Please input values here:");
 		
 		Scanner scannerRead = new Scanner(System.in);
-		scannerRead.useDelimiter("\\s");
+		scannerRead.useDelimiter("\\s+");
 		
 		int intIndex = 0;
 		int floatIndex = 0;
@@ -53,19 +54,19 @@ public class Separator {
 			}
 			
 		}
-		
+		scannerRead.close();
 		System.out.println("Abort mission");
-		System.out.print("Integers: ");
-		for (int i : intArray)
+		
+		System.out.print("Integers:");
+		for(int x = 0; x < intIndex; x++)
 		{
-			System.out.print(i+" ");
+			System.out.print(" " + intArray[x]);
 		}
-		System.out.println();
-		System.out.print("Floats: ");
-		for (float f : floatArray)
+		System.out.print("\nFloats:");
+		for(int x = 0; x < floatIndex; x++)
 		{
-			System.out.print(f+" ");
-		}
+			System.out.print(" " + floatArray[x]);
+		}		
 		
 	}
 
