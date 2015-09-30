@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
-public class LQueueDriver {
+public class AStackDriver {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		LQueue<Integer> queue = new LQueue<Integer>();
+		AStack<Integer> stack = new AStack<Integer>(5);
 		printHelp();
 		boolean running = true;
 		while (running)
@@ -23,8 +23,8 @@ public class LQueueDriver {
 					if (in.hasNextInt())
 					{
 						int newVal = in.nextInt();
-						queue.enqueue(newVal);
-						System.out.println(newVal+" enqueued");
+						stack.push(newVal);
+						System.out.println(newVal+" Pushed");
 					}
 					else
 					{
@@ -35,15 +35,25 @@ public class LQueueDriver {
 				case 'd':
 					try
 					{
-						System.out.println(queue.dequeue() +" dequeued");
+						System.out.println(stack.pop() +" Poped");
 					}
-					catch (LQueue.MyException me)
+					catch (AStack.MyException me)
 					{
-						System.out.println("Invalid operation.  Queue is empty.");
+						System.out.println("Invalid operation.  Stack is empty.");
+					}
+					break;
+				case 'p':
+					try
+					{
+						System.out.println(stack.peek() +" Peeked");
+					}
+					catch (AStack.MyException me)
+					{
+						System.out.println("Invalid operation.  Stack is empty.");
 					}
 					break;
 				case 'e':
-					System.out.println(queue.isEmpty()? "Empty":"Not Empty");
+					System.out.println(stack.isEmpty()? "Empty":"Not Empty");
 					break;
 				case 'q':
 					running = false;
@@ -54,9 +64,9 @@ public class LQueueDriver {
 					//printHelp();
 			}
 		}
-		while (!queue.isEmpty())
+		while (!stack.isEmpty())
 		{
-			System.out.print(queue.dequeue()+" ");
+			System.out.print(stack.pop()+" ");
 		}
 		System.out.println();
 	}
@@ -64,9 +74,10 @@ public class LQueueDriver {
 	public static void printHelp()
 	{
 		System.out.println("Options:");
-		System.out.println("\"a\" -\tAdd to Queue");
-		System.out.println("\"d\" -\tRemove from Queue");
-		System.out.println("\"e\" -\tCheck if Queue is empty");
+		System.out.println("\"a\" -\tPush to Stack");
+		System.out.println("\"d\" -\tPop from Stack");
+		System.out.println("\"p\" -\tPeek");
+		System.out.println("\"e\" -\tCheck if Stack is empty");
 		System.out.println("\"q\" -\tQuit");
 	}
 
