@@ -16,13 +16,13 @@ public class AStackClient {
 			AStack<String> strStack = new AStack<String>(n);
 			while (in.hasNext())
 			{
-				if (in.hasNextFloat())
-				{
-					fltStack.push(in.nextFloat());
-				}
-				else if (in.hasNextInt())
+				if (in.hasNextInt())
 				{
 					intStack.push(in.nextInt());
+				}
+				else if (in.hasNextFloat())
+				{
+					fltStack.push(in.nextFloat());
 				}
 				else
 				{
@@ -30,8 +30,6 @@ public class AStackClient {
 				}
 			}
 			in.close();
-			System.out.println("Abort mission");
-			
 			System.out.print("Strings:");
 			while (!strStack.isEmpty())
 			{
