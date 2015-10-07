@@ -46,7 +46,7 @@ public class AQueue <T>
 			front = 0;
 			end = count - 1;
 		}
-		end++;
+		end = (end + 1) % arr.length;
 		arr[end] = item;
 		count ++;
 	}
@@ -60,6 +60,7 @@ public class AQueue <T>
 		T tmp = arr[front];
 		arr[front] = null;
 		front = (front + 1) % arr.length;
+		count --;
 		return tmp;
 	}
 	

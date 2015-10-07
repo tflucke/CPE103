@@ -7,7 +7,7 @@ public class AQueueDriver {
 		printHelp();
 		boolean running = true;
 		while (running)
-		{
+		{   System.out.println("Enter a menu choice: ");
 			String line = in.nextLine();
 			if (line.length() != 1)
 			{
@@ -37,7 +37,7 @@ public class AQueueDriver {
 					{
 						System.out.println(queue.dequeue() +" dequeued");
 					}
-					catch (LQueue.MyException me)
+					catch (AQueue.MyException me)
 					{
 						System.out.println("Invalid operation.  Queue is empty.");
 					}
