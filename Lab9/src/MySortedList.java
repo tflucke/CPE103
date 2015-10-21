@@ -1,5 +1,3 @@
-import org.omg.CORBA.Current;
-
 
 public class MySortedList
 {
@@ -42,7 +40,7 @@ public class MySortedList
 			Node current = new Node(newElm);
 			Node tmpHead = head;
 			
-			while ( tmpHead.next.element < current.element)
+			while (tmpHead.next != null && tmpHead.next.element < current.element)
 			{
 				tmpHead = tmpHead.next;
 			}
@@ -55,15 +53,25 @@ public class MySortedList
 	
 	public void delete(int elm)
 	{
-		if (head == null)
+		if (head != null)
 		{
-			//DO NOTHING
-		}
-		else
-		{
-			//Set tmp variable head, iterate w/while until tmp.next == null
-			//Stop when tmp.elem = elm
-			//
+			if (head.element == elm)
+			{
+				head = head.next;
+			}
+			else
+			{
+				Node tmp =  head;
+				while(tmp.next != null && tmp.next.element <= elm)
+				{
+					if (tmp.next.element == elm)
+					{
+						tmp.next = tmp.next.next;
+						return;
+					}
+					tmp = tmp.next;
+				}
+			}	
 		}
 	}
 	
@@ -87,7 +95,7 @@ public class MySortedList
 	public void print()
 	{
 		Node tmpHead = head;
-		while (tmpHead.next != null)
+		while (tmpHead != null)
 		{
 			System.out.print(tmpHead.element + " " );
 			tmpHead = tmpHead.next;
