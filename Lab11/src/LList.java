@@ -52,13 +52,20 @@ public class LList<T> implements Iterable<T> {
 	
 	public void add(T item)
 	{
-		//Handle empty list
-		Node cur = head;
-		while (cur.next != null)
+		if (head == null)
 		{
-			cur = cur.next;
+			head = new Node();
+			head.elm = item;
 		}
-		cur.next = new Node();
-		cur.next.elm = item;
+		else
+		{
+			Node cur = head;
+			while (cur.next != null)
+			{
+				cur = cur.next;
+			}
+			cur.next = new Node();
+			cur.next.elm = item;
+		}
 	}
 }
