@@ -126,7 +126,7 @@ public class BasicBST
 		}
 		else if (chkNode.left == null ^ chkNode.right == null)
 		{
-			return 1;
+			return 1 + oneChildHelper(chkNode.left) + oneChildHelper(chkNode.right);
 		}
 		else
 		{
