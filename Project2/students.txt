@@ -1,0 +1,11 @@
+
+2 Monkey
+7 Horse
+345
+-45 Chicken
+Duck 6
+5 Lara
+4 Ape
+9 Panda Hi    
+3 2
+2147483683 Cat
