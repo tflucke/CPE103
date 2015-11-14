@@ -1,12 +1,12 @@
 /**
  * Stores student id and last name in a sortable way.
  * 
- * Project 2
+ * Project 4
  * 
  * @author Thomas Flucke tflucke
  * @author Lara Luu ljluu
  * 
- * @since 2015/10/22
+ * @since 2015/11/12
  */
 
 public class Student
@@ -37,7 +37,11 @@ public class Student
 	{
 		return other instanceof Student && id == ((Student) other).id;
 	}
-	
+	/**
+	 * Creates a hashcode representation for the student object.
+	 * The hashcode will be taken from the student's ID number.
+	 * @return long type student id
+	 */
 	@Override
 	public int hashCode()
 	{

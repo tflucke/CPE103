@@ -141,7 +141,11 @@ public class ListPrinter
 		}
 		in.close();
 	}
-	
+	/**
+	 * Helper method to determine whether or not the line inputted is a valid student
+	 * @param line
+	 * @return a student if valid or null if it is an invalid line
+	 */
 	private static Student readStudent(String line)
 	{
 		//Defines the format for what a (non-negative) long value looks like
