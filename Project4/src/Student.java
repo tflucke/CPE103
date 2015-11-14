@@ -6,7 +6,7 @@
  * @author Thomas Flucke tflucke
  * @author Lara Luu ljluu
  * 
- * @since 2015/11/12
+ * @since 2015/11/11
  */
 
 public class Student

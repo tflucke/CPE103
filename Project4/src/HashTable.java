@@ -7,7 +7,7 @@
  * @author Thomas Flucke tflucke
  * @author Lara Luu ljluu
  * 
- * @since 2015/10/21
+ * @since 2015/11/11
  * 
  * @see Comparable
  */
@@ -136,7 +136,7 @@ public class HashTable
 		private void findNextElm()
 		{
 			cursor++;
-			while (cursor < table.length && isActive(table[cursor]))
+			while (cursor < table.length && !isActive(table[cursor]))
 			{
 				cursor++;
 			}
@@ -159,7 +159,7 @@ public class HashTable
 			{
 				throw new NoSuchElementException();
 			}
-			Object tmp = table[cursor]; //temp variable holding the value of the cursor
+			Object tmp = table[cursor].elm; //temp variable holding the value of the cursor
 			findNextElm();
 			return tmp;
 		}
@@ -215,11 +215,13 @@ public class HashTable
 	{
 		int hash = hash(obj);
 		int i = 0;
-		while (table[hash + i*i] != null && !table[hash + i*i].elm.equals(obj))
+		int index = hash;
+		while (table[index] != null && !table[index].elm.equals(obj))
 		{
 			i++;
+			index = (hash + i*i) % table.length;
 		}
-		return hash+i*i;
+		return index;
 	}
 	
 	/**
@@ -264,7 +266,7 @@ public class HashTable
 		int index = findNextIndex(item);
 		if (isActive(table[index]))
 		{
-			return table[index];
+			return table[index].elm;
 		}
 		return null;
 	}
@@ -320,7 +322,7 @@ public class HashTable
 	{
 		for (int i = 0; i < table.length; i++)
 		{
-			System.out.print("["+i+"] ");
+			System.out.print("["+i+"]: ");
 			if (table[i] == null)
 			{
 				System.out.print("empty");

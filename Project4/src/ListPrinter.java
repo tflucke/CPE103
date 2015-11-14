@@ -2,12 +2,12 @@
  * Reads student information from a file, ignoring invalid lines, and prints them in ascending order by id.
  * Inputs must be one-per-line, formatted as such: "[id] [last name]"
  * 
- * Project 2
+ * Project 4
  * 
  * @author Thomas Flucke tflucke
  * @author Lara Luu ljluu
  * 
- * @since 2015/10/22
+ * @since 2015/11/11
  * 
  * @see Student
  */
@@ -98,6 +98,7 @@ public class ListPrinter
 					{
 						System.out.println("Invalid Input");
 					}
+					in.nextLine();
 					break;
 					
 				case 'f':
@@ -106,16 +107,27 @@ public class ListPrinter
 					if(in.hasNextLong() && (findId = in.nextLong()) > 0)
 					{
 						Student dummyStudent = new Student(findId, "lastName");
-						table.find(dummyStudent);
-						
 						Student findStudent = (Student)table.find(dummyStudent);
-						System.out.println(findStudent != null? String.format("Student with id %d has been found", findId):"Student not found");
-						
+						System.out.println(findStudent != null? String.format("Student %s has been found", findStudent.toString()):"Student not found");
 					}
 					else
 					{
 						System.out.println("Invalid Input");
 					}
+					in.nextLine();
+					break;
+					
+				case 'n':
+					System.out.println(table.elementCount() + " elements in the table");
+					break;
+					
+				case 'e':
+					System.out.println(table.isEmpty()? "Table is empty":"Table is not empty");
+					break;
+					
+				case 'k':
+					table.makeEmpty();
+					System.out.println("Table is now empty");
 					break;
 					
 				case 'p':
@@ -152,7 +164,7 @@ public class ListPrinter
 		final String longFormat = "^\\+?\\d+$";
 		
 		//Breaks the input line into whitespace separated parts
-		String[] inputLineParts = line.split("\\s");
+		String[] inputLineParts = line.trim().split("\\s");
 		if(inputLineParts.length == 2 && inputLineParts[0].matches(longFormat))
 		{
 			return new Student(Long.parseLong(inputLineParts[0]), inputLineParts[1]);
