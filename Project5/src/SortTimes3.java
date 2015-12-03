@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class SortTimes3 {
 
 	public static void main(String[] args)
@@ -10,7 +12,7 @@ public class SortTimes3 {
 			{
 				for (int i = 0; i < N; i++)
 				{
-					int num = (int) Math.random()*N;
+					int num = (int) (Math.random()*N);
 					baseListSelect[i] = num;
 					baseListBubble[i] = num;
 					baseListInsert[i] = num;
