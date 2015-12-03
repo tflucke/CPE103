@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 /**
  * Prints out sort times on an unsorted list
  * 
