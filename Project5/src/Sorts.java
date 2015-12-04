@@ -1,12 +1,26 @@
-
+/**
+ * Sorting algorithms implementation
+ * 
+ * Project 5
+ * 
+ * @author Thomas Flucke tflucke
+ * @author Lara Luu ljluu
+ * 
+ * @since 2015/12/01
+ * 
+ */
 public class Sorts {
+	 /**
+	  * Sorts the list of size elements contained in arr using the selection sort algorithm.
+	  * Iterates through the list to check for the smallest item
+	  * Swap one at a time "Shrinking List"
+	  */
 	 public static <T extends Comparable<? super T>> void selectionSort(T[] arr, int size)
-	 //Sorts the list of size elements contained in arr using the selection sort algorithm.
-	 //Swap one at a time "Shrinking LIst"
+
 	 {
 		 for (int i = 0; i < size; i++)
 		 {
-			 int minIndex = i;
+			 int minIndex = i; // Keeps track of the index of the minimum variable
 			 for(int j = i + 1; j < size; j++)
 			 {
 				 if(arr[minIndex].compareTo(arr[j]) > 0)
@@ -18,19 +32,23 @@ public class Sorts {
 			swap(arr, i, minIndex);
 	 	 }
 	 }
-	 
+	 /**
+	  * private method to swap two items in an array
+	  */
 	 private static <T extends Comparable<? super T>> void swap(T[] arr, int index1, int index2)
 	 {
-		 T tmp = arr[index1];
+		 T tmp = arr[index1]; // holds the value of the swapped item
 		 arr[index1] = arr[index2];
 		 arr[index2] = tmp;
 	 }
 	 
+	 /**
+	  * Sorts the list of size elements contained in arr using the bubble sort algorithm.
+	  * Swaps elements as the algorithm is iterating through the list
+	  */
 	 public static <T extends Comparable<? super T>> void bubbleSort(T[] arr, int size)
-	 //Sorts the list of size elements contained in arr using the bubble sort algorithm.
-	 // Swap as you go
 	 {
-		 boolean done;
+		 boolean done; // Boolean indicating that the list is sorted and no more iterations are needed
 		 do
 		 {
 			 done = true;
@@ -45,13 +63,17 @@ public class Sorts {
 		 }
 		 while (!done);
 	 }
+	 
+	 /**
+	  * Sorts the list of size elements contained in arr using the insertion sort algorithm.
+	  * Builds the final sorted array (or list) one item at a time.
+	  */
 	 public static <T extends Comparable<? super T>> void insertionSort(T[] arr, int size)
-	 //Sorts the list of size elements contained in arr using the insertion sort algorithm.
 	 {
 		 for(int i = 1; i < size; i++)
 		 {
-			 T tmp = arr[i];
-			 int j = i;
+			 T tmp = arr[i]; // temp array to hold the checked item
+			 int j = i; // index of value to be swapped
 			 while (j > 0 && arr[j-1].compareTo(tmp) > 0)
 			 {
 				 arr[j] = arr[j - 1];
@@ -60,15 +82,23 @@ public class Sorts {
 			 arr[j] = tmp;
 		 }
 	 }
+	 
+	 /**
+	  * Sorts the list of size elements contained in arr using the merge sort algorithm.
+	  * Divides the list into the smallest unit then merges the lists together into one sorted array
+	  */
 	 public static <T extends Comparable<? super T>> void mergeSort(T[] arr, int size)
-	 //Sorts the list of size elements contained in arr using the merge sort algorithm.
 	 {
 		 mergeSort(arr, 0, size - 1);
 	 }
 	 
+	 /**
+	  * Sorts the list of size elements contained in arr using the merge sort algorithm.
+	  * Divides the list into the smallest unit then merges the lists together into one sorted array
+	  */
 	 private static <T extends Comparable<? super T>> void mergeSort(T[] arr, int first, int last)
 	 {
-		 int middle = (first + last) / 2;
+		 int middle = (first + last) / 2; // finds the middle index of the list in order to split it
 		 if(first < last)
 		 {
 			 mergeSort(arr, first, middle);
@@ -77,13 +107,17 @@ public class Sorts {
 		 }
 	 }
 	 
+	 /**
+	  * Sorts the list of size elements contained in arr using the merge sort algorithm.
+	  * Private method used to merge two lists back into a sorted array
+	  */
 	 private static <T extends Comparable<? super T>> void mergeSortedHalves(T[] arr, int left, int middle, int right)
 	 {
 		 @SuppressWarnings("unchecked")
-		T[] tmp = (T[]) new Comparable[right - left + 1];
-		 int index1 = left;
-		 int index2 = middle + 1;
-		 int index = 0;
+		T[] tmp = (T[]) new Comparable[right - left + 1]; // tmp array to contain the merged halves of the original array
+		 int index1 = left; // index of the left side of the array
+		 int index2 = middle + 1; // index of the right side of the array
+		 int index = 0; // index for the tmp array
 		 
 		 while(index1 <= middle && index2 <= right)
 		 {
@@ -118,25 +152,36 @@ public class Sorts {
 		}
 	 }
 	 
+	 /**
+	  * Sorts the list of size elements contained in arr using the quick sort algorithm.
+	  * Median-of-three pivot and rearrangement of the three elements (as done in class).
+	  */
 	 public static <T extends Comparable<? super T>> void quickSort(T[] arr, int size)
-	 //Sorts the list of size elements contained in arr using the quick sort algorithm with
-	 //median-of-three pivot and rearrangement of the three elements (as done in class).
 	 {
 		 quickSort(arr, 0, size - 1);
 	 }
 	 
+	 /**
+	  * Sorts the list of size elements contained in arr using the quick sort algorithm.
+	  * Median-of-three pivot and rearrangement of the three elements (as done in class).
+	  * Divides a large array into smaller sub-arrays, recursively sorting them
+	  */
 	 private static <T extends Comparable<? super T>> void quickSort(T[] arr, int first, int last)
 	 {
 		 if (first < last)
 		 {
 			 setPivotToEnd(arr, first, last);
-			 int pivotIndex = splitList(arr, first, last);
+			 int pivotIndex = splitList(arr, first, last); // finds the index of the pivot
 			 quickSort(arr, first, pivotIndex - 1);
 			 quickSort(arr, pivotIndex + 1, last);
 		 }
 		 
 	 }
 	 
+	 /**
+	  * Sorts the list of size elements contained in arr using the quick sort algorithm.
+	  * Puts the pivot at the end of the list
+	  */
 	 private static <T extends Comparable<? super T>> void setPivotToEnd(T[] arr, int left, int right)
 	 {
 		 int middle = (right + left) / 2;
@@ -154,12 +199,15 @@ public class Sorts {
 		 }
 	 }
 	 
+	 /**
+	  * Sorts the list into the left side, right side, and pivot (in that order)
+	  */
 	 private static <T extends Comparable<? super T>> int splitList(T[] arr, int left, int right)
 	 {
-		 int indexLeft = left;
-		 int indexRight = right - 1;
+		 int indexLeft = left; //start index of the left half of the array
+		 int indexRight = right - 1; // start index of the right half of the array
 		 
-		 T pivot = arr[right];
+		 T pivot = arr[right]; // pivot 
 		 
 		 while(indexRight >= indexLeft)
 		 {
